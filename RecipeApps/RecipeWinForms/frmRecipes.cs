@@ -12,7 +12,7 @@ namespace RecipeWinForms
 
         public void ShowForm(int RecipeId)
         {
-            string sql = "select r.*, u.FirstName, u.LastName, c.CuisineName " +
+            string sql = "select r.RecipeName, c.CuisineName, u.FirstName, u.LastName, r.Calories, r.DateCreated, r.DateArchived, r.DatePublished, r.RecipeStatus " +
                 "from Recipe r " +
                 "join Users u on u.UserId = r.UserId " +
                 "join Cuisine c on c.CuisineId = r.CuisineId " +

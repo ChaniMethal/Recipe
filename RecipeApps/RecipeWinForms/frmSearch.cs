@@ -22,14 +22,11 @@ namespace RecipeWinForms
 
         private void SearchForRecipe(string RecipeName)
         {
-            string sql = "select RecipeId, CuisineId, UserId, RecipeName from Recipe r where r.RecipeName like '%" + RecipeName + "%'";
+            string sql = "select RecipeId, RecipeName from Recipe r where r.RecipeName like '%" + RecipeName + "%'";
             Debug.Print(sql);
             DataTable dt = SQLUtility.GetDataTable(sql);
-            if (gRecipe.Columns["RecipeId"] != null)
-            {
-                gRecipe.Columns["RecipeId"].Visible = false;
-            }
             gRecipe.DataSource = dt;
+            gRecipe.Columns["RecipeId"].Visible = false;
         }
         private void FormatGrid()
         {
