@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using CPUFramework;
+using CPUWindowsFormsFramework;
 
 namespace RecipeWinForms
 {
@@ -17,33 +12,41 @@ namespace RecipeWinForms
             InitializeComponent();
             btnSearch.Click += BtnSearch_Click;
             gRecipe.CellDoubleClick += GRecipe_CellDoubleClick;
-            FormatGrid();
+            btnNew.Click += BtnNew_Click;
+            WindowsFormsUtility.FormatGridForSearchResults(gRecipe);
         }
 
+        private void ShowRecipeForm(int rowindex)
+        {
+            int id = 0;
+            if(rowindex > -1)
+            {
+                id = (int)gRecipe.Rows[rowindex].Cells["RecipeId"].Value;
+            }
+            frmRecipes frm = new frmRecipes();
+            frm.ShowForm(id);
+        }
         private void SearchForRecipe(string RecipeName)
         {
             string sql = "select RecipeId, RecipeName from Recipe r where r.RecipeName like '%" + RecipeName + "%'";
-            Debug.Print(sql);
+            
             DataTable dt = SQLUtility.GetDataTable(sql);
             gRecipe.DataSource = dt;
             gRecipe.Columns["RecipeId"].Visible = false;
         }
-        private void FormatGrid()
-        {
-            gRecipe.AllowUserToAddRows = false;
-            gRecipe.ReadOnly = true;
-            gRecipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            gRecipe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        }
+
         private void GRecipe_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
-            int id = (int)gRecipe.Rows[e.RowIndex].Cells["RecipeId"].Value;
-            frmRecipes frm = new frmRecipes();
-            frm.ShowForm(id);
+            ShowRecipeForm(e.RowIndex);
         }
         private void BtnSearch_Click(object? sender, EventArgs e)
         {
             SearchForRecipe(txtRecipeName.Text);
         }
+        private void BtnNew_Click(object? sender, EventArgs e)
+        {
+            ShowRecipeForm(-1);
+        }
+
     }
 }
