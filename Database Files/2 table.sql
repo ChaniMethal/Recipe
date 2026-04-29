@@ -39,7 +39,7 @@ create table dbo.Recipe(
     Calories int not null constraint ck_Recipe_Calories_greater_than_zero check(Calories > 0),
     DateCreated datetime not null constraint ck_Recipe_Date_Created_valid 
         check(DateCreated between '12-09-2003' and GETDATE()),
-    DatePublished datetime null constraint ck_Recipe_Date_Published_before_current_date check(DatePublished < GETDATE()),
+    DatePublished datetime null constraint ck_Recipe_Date_Published_before_current_date check(DatePublished <= GETDATE()),
     DateArchived datetime null constraint ck_Recipe_Date_Archived_before_current_date check(DateArchived < GETDATE()),
     RecipeStatus as 
         CASE
