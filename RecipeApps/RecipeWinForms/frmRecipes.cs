@@ -18,7 +18,7 @@ namespace RecipeWinForms
 
         public void ShowForm(int RecipeId)
         {
-            string sql = "select r.RecipeId, r.RecipeName, c.CuisineId, c.CuisineName, r.UserId, u.FirstName, u.LastName, r.Calories, r.DateCreated, r.DateArchived, r.DatePublished, r.RecipeStatus " +
+            string sql = "select r.RecipeId, r.RecipeName, r.CuisineId, c.CuisineName, r.UserId, u.UserName, r.Calories, r.DateCreated, r.DateArchived, r.DatePublished, r.RecipeStatus " +
                 "from Recipe r " +
                 "join Users u on u.UserId = r.UserId " +
                 "join Cuisine c on c.CuisineId = r.CuisineId " +
@@ -30,10 +30,16 @@ namespace RecipeWinForms
                 dtrecipe.Rows.Add();
             }
             DataTable dtcuisines = SQLUtility.GetDataTable("select CuisineId, CuisineName from Cuisine");
+            DataTable dtusername = SQLUtility.GetDataTable("select UserId, UserName from Users");
+            if (RecipeId == 0)
+            {
+                dtrecipe.Rows.Add();
+                dtrecipe.Rows[0]["CuisineId"] = dtcuisines.Rows[0]["CuisineId"];
+                dtrecipe.Rows[0]["UserId"] = dtusername.Rows[0]["UserId"];
+            }
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisines, dtrecipe, "Cuisine");
-            WindowsFormsUtility.SetControlBinding(txtFirstName, dtrecipe);
-            WindowsFormsUtility.SetControlBinding(txtLastName, dtrecipe);
+            WindowsFormsUtility.SetListBinding(lstUserName, dtusername, dtrecipe, "User");
             WindowsFormsUtility.SetControlBinding(txtCalories, dtrecipe);
             WindowsFormsUtility.SetControlBinding(dtpDateCreated, dtrecipe);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, dtrecipe);
