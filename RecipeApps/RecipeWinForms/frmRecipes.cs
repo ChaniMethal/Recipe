@@ -31,12 +31,6 @@ namespace RecipeWinForms
             }
             DataTable dtcuisines = SQLUtility.GetDataTable("select CuisineId, CuisineName from Cuisine");
             DataTable dtusername = SQLUtility.GetDataTable("select UserId, UserName from Users");
-            if (RecipeId == 0)
-            {
-                dtrecipe.Rows.Add();
-                dtrecipe.Rows[0]["CuisineId"] = dtcuisines.Rows[0]["CuisineId"];
-                dtrecipe.Rows[0]["UserId"] = dtusername.Rows[0]["UserId"];
-            }
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisines, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetListBinding(lstUserName, dtusername, dtrecipe, "User");
