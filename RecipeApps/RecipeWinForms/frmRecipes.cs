@@ -28,6 +28,7 @@ namespace RecipeWinForms
             if (RecipeId == 0 )
             {
                 dtrecipe.Rows.Add();
+                dtrecipe.Rows[0]["DateCreated"] = DateTime.Today;
             }
             DataTable dtcuisines = SQLUtility.GetDataTable("select CuisineId, CuisineName from Cuisine");
             DataTable dtusername = SQLUtility.GetDataTable("select UserId, UserName from Users");
@@ -52,7 +53,7 @@ namespace RecipeWinForms
         {
             SQLUtility.DebugPrintDataTable(dtrecipe);
             DataRow r = dtrecipe.Rows[0];
-            int id = (int)r["RecipeId"];
+            int id = r["RecipeId"] == DBNull.Value ? 0 : (int)r["RecipeId"];
             string sql = "";
 
             if (id > 0)

@@ -33,8 +33,8 @@
             lblName = new Label();
             txtRecipeName = new TextBox();
             btnSearch = new Button();
-            gRecipe = new DataGridView();
             btnNew = new Button();
+            gRecipe = new DataGridView();
             tblMain.SuspendLayout();
             tblOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gRecipe).BeginInit();
@@ -42,6 +42,7 @@
             // 
             // tblMain
             // 
+            tblMain.AutoSize = false;
             tblMain.ColumnCount = 1;
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tblMain.Controls.Add(tblOptions, 0, 0);
@@ -116,17 +117,6 @@
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
             // 
-            // gRecipe
-            // 
-            gRecipe.BackgroundColor = Color.LightPink;
-            gRecipe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gRecipe.Dock = DockStyle.Fill;
-            gRecipe.Location = new Point(3, 53);
-            gRecipe.Name = "gRecipe";
-            gRecipe.RowHeadersWidth = 51;
-            gRecipe.Size = new Size(794, 394);
-            gRecipe.TabIndex = 2;
-            // 
             // btnNew
             // 
             btnNew.Anchor = AnchorStyles.Left;
@@ -140,6 +130,18 @@
             btnNew.TabIndex = 3;
             btnNew.Text = "&New";
             btnNew.UseVisualStyleBackColor = false;
+            // 
+            // gRecipe
+            // 
+            gRecipe.BackgroundColor = Color.LightPink;
+            gRecipe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gRecipe.Dock = DockStyle.Fill;
+            gRecipe.Location = new Point(3, 53);
+            gRecipe.Name = "gRecipe";
+            gRecipe.RowHeadersWidth = 51;
+            gRecipe.Size = new Size(794, 394);
+            gRecipe.TabIndex = 2;
+            gRecipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // 
             // frmSearch
             // 
@@ -155,6 +157,7 @@
             tblOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gRecipe).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
