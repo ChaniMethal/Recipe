@@ -1,9 +1,5 @@
 ﻿using System.Data;
 using System.Diagnostics;
-using CPUFramework;
-using CPUWindowsFormsFramework;
-using RecipeSystem;
-
 namespace RecipeWinForms
 {
     public partial class frmSearch : Form

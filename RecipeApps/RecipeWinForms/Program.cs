@@ -1,7 +1,4 @@
-using CPUFramework;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Security.Claims;
-using static System.Net.WebRequestMethods;
+using RecipeSystem;
 namespace RecipeWinForms
 {
     internal static class Program
@@ -15,7 +12,7 @@ namespace RecipeWinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            SQLUtility.ConnectionString = "Server = tcp:chanim.database.windows.net,1433; Initial Catalog = RecipeDB; Persist Security Info = False; User ID = ChaniM; Password = Azure2026!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
+            DBManager.SetConnectionString("Server = tcp:chanim.database.windows.net,1433; Initial Catalog = RecipeDB; Persist Security Info = False; User ID = ChaniM; Password = Azure2026!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
             Application.Run(new frmSearch());
         }
     }

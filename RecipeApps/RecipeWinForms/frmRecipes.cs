@@ -1,6 +1,4 @@
-﻿using CPUFramework;
-using CPUWindowsFormsFramework;
-using System.Data;
+﻿using System.Data;
 using System.Diagnostics;
 
 namespace RecipeWinForms
@@ -14,24 +12,18 @@ namespace RecipeWinForms
             btnSave.Click += BtnSave_Click;
             btnDelete.Click += BtnDelete_Click;
         }
-
+        
 
         public void ShowForm(int RecipeId)
         {
-            string sql = "select r.RecipeId, r.RecipeName, r.CuisineId, c.CuisineName, r.UserId, u.UserName, r.Calories, r.DateCreated, r.DateArchived, r.DatePublished, r.RecipeStatus " +
-                "from Recipe r " +
-                "join Users u on u.UserId = r.UserId " +
-                "join Cuisine c on c.CuisineId = r.CuisineId " +
-                " where r.RecipeId = " +
-                RecipeId.ToString();
-            dtrecipe = SQLUtility.GetDataTable(sql);
+            dtrecipe = Recipe.Load(RecipeId);
             if (RecipeId == 0 )
             {
                 dtrecipe.Rows.Add();
                 dtrecipe.Rows[0]["DateCreated"] = DateTime.Today;
             }
-            DataTable dtcuisines = SQLUtility.GetDataTable("select CuisineId, CuisineName from Cuisine");
-            DataTable dtusername = SQLUtility.GetDataTable("select UserId, UserName from Users");
+            DataTable dtcuisines = Recipe.GetCuisineList();
+            DataTable dtusername = Recipe.GetUserList();
             WindowsFormsUtility.SetControlBinding(txtRecipeName, dtrecipe);
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisines, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetListBinding(lstUserName, dtusername, dtrecipe, "User");
@@ -43,47 +35,15 @@ namespace RecipeWinForms
             this.Show();
 
         }
-        private void Delete()
-        {
-            int id = (int)dtrecipe.Rows[0]["RecipeId"];
-            string sql = "delete recipe where RecipeId = " + id;
-            SQLUtility.ExecuteSQL(sql);
-        }
-        private void Save()
-        {
-            SQLUtility.DebugPrintDataTable(dtrecipe);
-            DataRow r = dtrecipe.Rows[0];
-            int id = r["RecipeId"] == DBNull.Value ? 0 : (int)r["RecipeId"];
-            string sql = "";
-
-            if (id > 0)
-            {
-                sql = string.Join(Environment.NewLine, $"update recipe set",
-                    $"RecipeName = '{r["RecipeName"]}',",
-                    $"CuisineId = '{r["CuisineId"]}',",
-                    $"UserId = '{r["UserId"]}',",
-                    $"Calories = '{r["Calories"]}',",
-                    $"DateCreated = '{r["DateCreated"]}'",
-                    $"where RecipeId = {r["RecipeId"]}");
-            }
-            else
-            {
-                sql = "insert Recipe(RecipeName, CuisineId, UserId, Calories, DateCreated) ";
-                sql += $"select '{r["RecipeName"]}', '{r["CuisineId"]}', '{r["UserId"]}','{r["Calories"]}', '{r["DateCreated"]}'";
-
-            }
-            Debug.Print(sql);
-            SQLUtility.ExecuteSQL(sql);
-        }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
         {
-            Delete();
+            Recipe.Delete(dtrecipe);
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
         {
-            Save();
+            Recipe.Save(dtrecipe);
         }
     }
 }

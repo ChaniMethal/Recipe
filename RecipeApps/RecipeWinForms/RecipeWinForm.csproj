@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CPUFramework\CPUFramework.csproj" />
     <ProjectReference Include="..\..\..\CPUWindowsFormsFramework\CPUWindowsFormsFramework.csproj" />
     <ProjectReference Include="..\..\RecipeSystem\RecipeSystem.csproj" />
   </ItemGroup>
