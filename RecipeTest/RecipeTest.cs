@@ -67,17 +67,7 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDataTable
-                ("select top 1 r.* from recipe r " +
-                "left join IngredientDesc i on i.RecipeId = r.RecipeId " +
-                "left join PrepSteps p on p.RecipeId = r.RecipeId " +
-                "left join MealCourseRecipe m on m.RecipeId = r.RecipeId " +
-                "left join CookBookRecipe c on c.RecipeId = r.RecipeId " +
-                "where i.IngredientId is null " +
-                "and p.PrepStepsId is null " +
-                "and m.MealCourseRecipeId is null " +
-                "and c.CookBookRecipeId is null " +
-                "order by r.recipeid desc");
+            DataTable dt = SQLUtility.GetDataTable("select top 1 * from recipe r order by r.recipeid desc");
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
@@ -85,7 +75,7 @@ namespace RecipeTest
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["RecipeName"].ToString();
             }
-            Assume.That(recipeid > 0, "No recipes without related record in DB, can't run test");
+            Assume.That(recipeid > 0, "No recipes without user in DB, can't run test");
             TestContext.WriteLine("existing recipe without user, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             Recipe.Delete(dt);
