@@ -43,7 +43,7 @@ namespace RecipeSystem
         {
             DataTable dt = new();
 
-            SqlCommand cmd = SQLUtility.GetSqlCommand("UserGet");
+            SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
 
             cmd.Parameters["@All"].Value = 1;
 
