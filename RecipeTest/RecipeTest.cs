@@ -44,8 +44,75 @@ namespace RecipeTest
             ClassicAssert.IsTrue(newid > 0, "recipe with name = " + recipename + " is not found in DB");
             TestContext.WriteLine("recipe with name " + recipename + " is found in db with pk value = " + newid);
         }
+        [Test]
+        public void GetFirstColumnFirstRowValueAsString()
+        {
+            string s = SQLUtility.GetFirstColumnFirstRowValueAsString(
+                "select top 1 LastName from users where LastName is not null"
+            );
 
+            TestContext.Out.WriteLine("lastname = [" + s + "]");
 
+            ClassicAssert.IsTrue(s != "", "Should return a lastname");
+        }
+        [Test]
+        public void ChangeExistingRecipeToInvalidCuisineId()
+        {
+            int recipeid = GetExistingRecipeId();
+            Assume.That(recipeid > 0, "No recipes in DB, can't run test");
+
+            DataTable dt = Recipe.Load(recipeid);
+
+            dt.Rows[0]["CuisineId"] = -1;
+
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
+
+            TestContext.WriteLine(ex.Message);
+        }
+        [Test]
+        public void ChangeExistingRecipeDateCreatedToInvalidDate()
+        {
+            int recipeid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 recipeid from recipe where DatePublished is not null");
+
+            Assume.That(recipeid > 0, "No published recipes in DB, can't run test");
+
+            DataTable dt = Recipe.Load(recipeid);
+
+            DateTime datepublished = (DateTime)dt.Rows[0]["DatePublished"];
+            DateTime invalidDateCreated = datepublished.AddDays(1);
+
+            TestContext.Out.WriteLine("DatePublished = " + datepublished);
+            TestContext.Out.WriteLine("Change DateCreated to invalid date = " + invalidDateCreated);
+
+            dt.Rows[0]["DateCreated"] = invalidDateCreated;
+
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
+
+            TestContext.WriteLine(ex.Message);
+        }
+
+        [Test]
+        public void ChangeExistingDuplicateRecipeName()
+        {
+            int recipeid = GetExistingRecipeId();
+            Assume.That(recipeid > 0, "No recipes in DB, can't run test");
+
+            string recipename = SQLUtility.GetFirstColumnFirstRowValueAsString(
+                "select top 1 recipename from recipe where recipeid <> " + recipeid
+            );
+
+            Assume.That(recipename != "", "No other recipe name found");
+
+            TestContext.WriteLine("change recipename to duplicate name " + recipename);
+
+            DataTable dt = Recipe.Load(recipeid);
+
+            dt.Rows[0]["RecipeName"] = recipename;
+
+            Exception ex = Assert.Throws<Exception>(() => Recipe.Save(dt));
+
+            TestContext.WriteLine(ex.Message);
+        }
         [Test]
         public void ChangeExistingRecipeCalories()
         {
