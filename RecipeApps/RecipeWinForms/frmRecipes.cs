@@ -35,15 +35,54 @@ namespace RecipeWinForms
             this.Show();
 
         }
+        private void Save()
+        {
+            Application.UseWaitCursor = true;
+
+            try
+            {
+                Recipe.Save(dtrecipe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+        }
+        private void Delete()
+        {
+            var response = MessageBox.Show("Are you sure you want to delete this Recipe?", "Recipe", MessageBoxButtons.YesNo);
+            if (response == DialogResult.No)
+            {
+                return;
+            }
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipe.Delete(dtrecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
+        }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
         {
-            Recipe.Delete(dtrecipe);
+            Delete();
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
         {
-            Recipe.Save(dtrecipe);
+            Save();
         }
     }
 }
