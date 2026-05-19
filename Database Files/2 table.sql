@@ -34,13 +34,13 @@ create table dbo.Recipe(
     CuisineId int not null constraint f_Cuisine_Recipe foreign key references Cuisine(CuisineId),
     UserId int not null constraint f_Users_Recipe foreign key references Users(UserId),
     RecipeName varchar(100) not null
-        constraint u_Recipe_Name UNIQUE
-        constraint ck_Recipe_Name_is_not_blank check(RecipeName <>''),
-    Calories int not null constraint ck_Recipe_Calories_greater_than_zero check(Calories > 0),
+        constraint u_Recipe_Name_must_be_unique UNIQUE
+        constraint ck_Recipe_Name_cannot_be_blank check(RecipeName <>''),
+    Calories int not null constraint ck_Recipe_Calories_must_be_greater_than_zero check(Calories > 0),
     DateCreated datetime not null constraint ck_Recipe_Date_Created_valid 
         check(DateCreated between '12-09-2003' and GETDATE()),
-    DatePublished datetime null constraint ck_Recipe_Date_Published_before_current_date check(DatePublished <= GETDATE()),
-    DateArchived datetime null constraint ck_Recipe_Date_Archived_before_current_date check(DateArchived < GETDATE()),
+    DatePublished datetime null constraint ck_Recipe_Date_Published_must_be_before_current_date check(DatePublished <= GETDATE()),
+    DateArchived datetime null constraint ck_Recipe_Date_Archived__must_be_before_current_date check(DateArchived < GETDATE()),
     RecipeStatus as 
         CASE
             When DateArchived is not null then 'archived'
@@ -48,9 +48,9 @@ create table dbo.Recipe(
         else 'draft'
         end,
     RecipePicture as concat('Recipe_', REPLACE(RecipeName, ' ', '_'), '.jpg') persisted,
-    constraint ck_Recipe_Date_Published_after_Date_Created check(DatePublished > DateCreated),
-    constraint ck_Recipe_Date_Archived_after_Date_Created check(DateArchived > DateCreated),
-    constraint ck_Recipe_Date_Archived_after_Date_Published check(DateArchived > DatePublished)
+    constraint ck_Recipe_Date_Published_must_be_after_Date_Created check(DatePublished > DateCreated),
+    constraint ck_Recipe_Date_Archived_must_be_after_Date_Created check(DateArchived > DateCreated),
+    constraint ck_Recipe_Date_Archived_must_be_after_Date_Published check(DateArchived > DatePublished)
 )
 GO
 create table dbo.Ingredient(

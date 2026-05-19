@@ -58,6 +58,9 @@ union select (select CuisineId from Cuisine c where c.CuisineName = 'American'),
 union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
     (select u.UserId from users u where u.FirstName = 'Sarah' and u.LastName = 'Cohen'),
     'Green Beans', 20, '02-14-2012', null, null
+union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
+    (select u.UserId from users u where u.FirstName = 'Sarah' and u.LastName = 'Cohen'),
+    'Test Food', 100, '02-14-2022', null, null
 
 insert Ingredient(IngredientName)
 select 'Sugar'
