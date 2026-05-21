@@ -35,27 +35,24 @@ namespace RecipeWinForms
             this.Show();
 
         }
-        private void SaveConstraints()
+        
+        private void Save()
         {
             dtrecipe.Rows[0].EndEdit();
 
             if (lstCuisineName.Text.Trim() == "")
             {
-                throw new Exception("Cannot save recipe because cuisine cannot be blank.");
+                dtrecipe.Rows[0]["CuisineId"] = 0;
             }
 
             if (lstUserName.Text.Trim() == "")
             {
-                throw new Exception("Cannot save recipe because user cannot be blank.");
+                dtrecipe.Rows[0]["UserId"] = 0;
             }
-        }
-        private void Save()
-        {
             Application.UseWaitCursor = true;
 
             try
             {
-                SaveConstraints();
                 Recipe.Save(dtrecipe);
             }
             catch (Exception ex)
