@@ -65,9 +65,11 @@ namespace RecipeSystem
         public static void Save(DataTable dtrecipe)
         {
 
-                SQLUtility.DebugPrintDataTable(dtrecipe);
-                DataRow r = dtrecipe.Rows[0];
-                int id = (int)r["RecipeId"];
+            dtrecipe.Rows[0].EndEdit();
+
+            SQLUtility.DebugPrintDataTable(dtrecipe);
+            DataRow r = dtrecipe.Rows[0];
+            int id = (int)r["RecipeId"];
                 string sql = "";
 
                 if (id > 0)
