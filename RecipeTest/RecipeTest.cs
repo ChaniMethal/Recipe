@@ -1,4 +1,5 @@
-﻿using NUnit.Framework.Legacy;
+﻿using NUnit.Framework.Internal;
+using NUnit.Framework.Legacy;
 using System.Data;
 
 namespace RecipeTest
@@ -209,31 +210,37 @@ namespace RecipeTest
         public void DeleteRecipe()
         {
             DataTable dt = SQLUtility.GetDataTable(
-              "select top 1 r.* from recipe r " +
-            "left join IngredientDesc i on i.RecipeId = r.RecipeId " +
-            "left join PrepSteps p on p.RecipeId = r.RecipeId " +
-            "left join MealCourseRecipe m on m.RecipeId = r.RecipeId " +
-            "left join CookBookRecipe c on c.RecipeId = r.RecipeId " +
-            "where i.IngredientId is null " +
-            "and p.PrepStepsId is null " +
-            "and m.MealCourseRecipeId is null " +
-            "and c.CookBookRecipeId is null " +
-            "and isnull(r.RecipeStatus, '') <> 'draft' " +
-            "and (r.DateArchived is null or datediff(day, r.DateArchived, getdate()) <= 30) " +
-            "order by r.recipeid desc");
+       "select top 1 r.* from recipe r " +
+       "where isnull(r.RecipeStatus, '') <> 'draft' " +
+       "and (r.DateArchived is null or datediff(day, r.DateArchived, getdate()) <= 30) " +
+       "order by r.recipeid desc"
+   );
+
             int recipeid = 0;
             string recipedesc = "";
+
             if (dt.Rows.Count > 0)
             {
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["RecipeName"].ToString();
             }
+
             Assume.That(recipeid > 0, "No non-deletable recipes in DB, can't run test");
+
             TestContext.Out.WriteLine("existing non-deletable recipe, with id = " + recipeid + " " + recipedesc);
-            TestContext.Out.WriteLine("ensure that app cannot delete " + recipeid);
+            TestContext.Out.WriteLine("ensure that app cannot delete recipe " + recipeid);
 
             Exception ex = Assert.Throws<Exception>(() => Recipe.Delete(dt));
+
+            TestContext.Out.WriteLine(ex.Message);
+
+            DataTable dtafterdelete = SQLUtility.GetDataTable(
+                "select * from Recipe where RecipeId = " + recipeid
+            );
+
+            ClassicAssert.IsTrue(dtafterdelete.Rows.Count == 1, "non-deletable recipe was deleted");
         }
+
         [Test]
         public void LoadRecipe()
         {
