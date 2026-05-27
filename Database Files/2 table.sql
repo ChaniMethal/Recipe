@@ -20,6 +20,7 @@ create table dbo.Users(
     LastName varchar(50) not null constraint ck_Users_Last_Name_is_not_blank check(LastName <> ''),
     UserName as concat(lower(FirstName), '.', lower(LastName)) persisted
         constraint u_Users_Name unique
+        constraint ck_UserName_is_not_blank check(UserName <> '')
 )
 go
 create table dbo.Cuisine(
@@ -31,8 +32,10 @@ create table dbo.Cuisine(
 go
 create table dbo.Recipe(
     RecipeId int not null identity primary key,
-    CuisineId int not null constraint f_Cuisine_Recipe foreign key references Cuisine(CuisineId),
-    UserId int not null constraint f_Users_Recipe foreign key references Users(UserId),
+    CuisineId int not null constraint f_Cuisine_Recipe foreign key references Cuisine(CuisineId)
+        constraint ck_Cuisine_cannot_be_blank check(CuisineId > 0),
+    UserId int not null constraint f_Users_Recipe foreign key references Users(UserId)
+        constraint ck_User_cannot_be_blank check(UserID > 0),
     RecipeName varchar(100) not null
         constraint u_Recipe_Name_must_be_unique UNIQUE
         constraint ck_Recipe_Name_cannot_be_blank check(RecipeName <>''),
