@@ -61,6 +61,18 @@ union select (select CuisineId from Cuisine c where c.CuisineName = 'American'),
 union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
     (select u.UserId from users u where u.FirstName = 'Sarah' and u.LastName = 'Cohen'),
     'Test Food', 100, '02-14-2022', null, null
+union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
+    (select u.UserId from users u where u.FirstName = 'Sarah' and u.LastName = 'Cohen'),
+    'Test Recipe', 100, '02-14-2022', null, '5-24-2026'
+union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
+    (select u.UserId from users u where u.FirstName = 'Yaakov' and u.LastName = 'Friedman'),
+    'Yapchick', 560, '02-14-2022', null, '5-24-2022'
+union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
+    (select u.UserId from users u where u.FirstName = 'Yaakov' and u.LastName = 'Friedman'),
+    'London Broil', 50, '05-18-2024', null, '5-24-2024'
+union select (select CuisineId from Cuisine c where c.CuisineName = 'American'), 
+    (select u.UserId from users u where u.FirstName = 'Dovid' and u.LastName = 'Levy'),
+    'Steak', 50, '05-18-2024', null, null
 
 insert Ingredient(IngredientName)
 select 'Sugar'
