@@ -1,10 +1,10 @@
-create or alter function dbo.MealDesc(@MealId int)
-returns varchar(75)
+create or alter function dbo.MealCalories(@MealId int)
+returns int
 as 
 begin 
-    declare @value VARCHAR(75) = ''
+    declare @value int = 0
 
-    select @value = concat(m.MealName, ' (', sum(r.Calories), ' Calories', ')')
+    select @value = sum(r.Calories)
     from Meal m 
     join MealCourse mc
     on m.MealId = mc.MealId
@@ -18,5 +18,5 @@ begin
     return @value
 end 
 go 
-select MealDesc = dbo.MealDesc(m.MealId),*
+select MealCalories = dbo.MealCalories(m.MealId),*
 from Meal m

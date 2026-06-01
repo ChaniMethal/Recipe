@@ -26,14 +26,14 @@ namespace RecipeWinForms
             }
             DataTable dtcuisines = Recipe.GetCuisineList();
             DataTable dtusername = Recipe.GetUserList();
-            WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
+            /*WindowsFormsUtility.SetControlBinding(txtRecipeName, bindsource);
             WindowsFormsUtility.SetListBinding(lstCuisineName, dtcuisines, dtrecipe, "Cuisine");
             WindowsFormsUtility.SetListBinding(lstUserName, dtusername, dtrecipe, "User");
             WindowsFormsUtility.SetControlBinding(txtCalories, bindsource);
             WindowsFormsUtility.SetControlBinding(dtpDateCreated, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDateArchived, bindsource);
             WindowsFormsUtility.SetControlBinding(txtDatePublished, bindsource);
-            WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);
+            WindowsFormsUtility.SetControlBinding(txtRecipeStatus, bindsource);*/
             this.Show();
 
         }
