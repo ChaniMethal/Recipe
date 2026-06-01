@@ -5,18 +5,8 @@ create or alter procedure dbo.RecipeGet(
 )
 as
 begin
-    select 
-        r.RecipeId, 
-        r.RecipeName, 
-        r.CuisineId,
-        c.CuisineName,
-        r.UserId,
-        u.UserName,
-        r.Calories, 
-        r.DateCreated, 
-        r.DatePublished, 
-        r.DateArchived, 
-        r.RecipeStatus
+    select r.RecipeId, r.RecipeName, r.CuisineId,c.CuisineName,r.UserId,u.UserName,r.Calories, r.DateCreated, r.DatePublished, r.DateArchived, r.RecipeStatus,
+        RecipeDesc = dbo.RecipeDesc(@RecipeId)
     from Recipe r
     join Cuisine c
         on c.CuisineId = r.CuisineId
