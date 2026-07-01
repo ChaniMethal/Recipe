@@ -11,15 +11,7 @@ as
 begin 
     declare @return int = 0
 
-    select 
-        @RecipeId = nullif(@RecipeId, 0),
-        @Calories = isnull(@Calories, 0)
-
-    if @Calories <= 0
-    begin
-        select @return = 1, @Message = 'Calories must be greater than zero.'
-        goto finished
-    end
+    select @RecipeId = nullif(@RecipeId, 0)
 
     if @RecipeId is null
     begin
