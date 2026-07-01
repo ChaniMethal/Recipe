@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Diagnostics;
-namespace RecipeWinForms
+namespace RecipeWinForm
 {
     public partial class frmSearch : Form
     {
@@ -10,7 +10,7 @@ namespace RecipeWinForms
             btnSearch.Click += BtnSearch_Click;
             gRecipe.CellDoubleClick += GRecipe_CellDoubleClick;
             btnNew.Click += BtnNew_Click;
-            WindowsFormsUtility.FormatGridForSearchResults(gRecipe);
+            WindowsFormsUtility.FormatGridForSearchResults(gRecipe, "Recipe");
         }
 
         private void ShowRecipeForm(int rowindex)
@@ -20,7 +20,7 @@ namespace RecipeWinForms
             {
                 id = (int)gRecipe.Rows[rowindex].Cells["RecipeId"].Value;
             }
-            frmRecipes frm = new frmRecipes();
+            frmRecipe frm = new frmRecipe();
             frm.ShowForm(id);
         }
         private void SearchForRecipe(string RecipeName)

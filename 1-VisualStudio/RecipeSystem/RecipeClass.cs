@@ -4,9 +4,20 @@ using System.Diagnostics;
 
 namespace RecipeSystem
 {
-    public class Recipe
+    public class RecipeClass
     {
+        public static int Clone(int recipeid)
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("RecipeClone");
+            cmd.Parameters["@RecipeId"].Value = recipeid;
+            cmd.Parameters["@NewRecipeId"].Value = 0;
 
+            SQLUtility.ExecuteSQL(cmd);
+
+            int newrecipeid = (int)cmd.Parameters["@NewRecipeId"].Value;
+
+            return newrecipeid;
+        }
         public static DataTable SearchRecipe(string RecipeName)
         {
             DataTable dt = new();
@@ -40,25 +51,21 @@ namespace RecipeSystem
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
-        public static DataTable GetUserList()
+        public static DataTable GetUserList(bool includeblank = false)
         {
             DataTable dt = new();
-
             SqlCommand cmd = SQLUtility.GetSqlCommand("UsersGet");
-
             SQLUtility.SetParamValues(cmd, "@All", 1);
-
+            SQLUtility.SetParamValues(cmd, "@IncludeBlank", includeblank);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
-        public static DataTable GetCuisineList()
+        public static DataTable GetCuisineList(bool includeblank = false)
         {
             DataTable dt = new();
-
             SqlCommand cmd = SQLUtility.GetSqlCommand("CuisineGet");
-
             SQLUtility.SetParamValues(cmd, "@All", 1);
-
+            SQLUtility.SetParamValues(cmd, "@IncludeBlank", includeblank);
             dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }

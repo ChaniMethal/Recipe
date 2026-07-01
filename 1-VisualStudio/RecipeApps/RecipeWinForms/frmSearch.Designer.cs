@@ -1,4 +1,4 @@
-﻿namespace RecipeWinForms
+﻿namespace RecipeWinForm
 {
     partial class frmSearch
     {
@@ -42,7 +42,6 @@
             // 
             // tblMain
             // 
-            tblMain.AutoSize = false;
             tblMain.ColumnCount = 1;
             tblMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tblMain.Controls.Add(tblOptions, 0, 0);
@@ -59,7 +58,7 @@
             // tblOptions
             // 
             tblOptions.AutoSize = true;
-            tblOptions.BackColor = Color.RosyBrown;
+            tblOptions.BackColor = Color.LightSteelBlue;
             tblOptions.ColumnCount = 4;
             tblOptions.ColumnStyles.Add(new ColumnStyle());
             tblOptions.ColumnStyles.Add(new ColumnStyle());
@@ -81,9 +80,9 @@
             // 
             lblName.Anchor = AnchorStyles.Left;
             lblName.AutoSize = true;
-            lblName.BackColor = Color.RosyBrown;
+            lblName.BackColor = Color.SteelBlue;
             lblName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblName.ForeColor = Color.DarkRed;
+            lblName.ForeColor = Color.Black;
             lblName.Location = new Point(3, 8);
             lblName.Name = "lblName";
             lblName.Size = new Size(121, 28);
@@ -93,10 +92,10 @@
             // txtRecipeName
             // 
             txtRecipeName.Anchor = AnchorStyles.Left;
-            txtRecipeName.BackColor = Color.Snow;
+            txtRecipeName.BackColor = Color.SteelBlue;
             txtRecipeName.BorderStyle = BorderStyle.None;
             txtRecipeName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtRecipeName.ForeColor = Color.DarkRed;
+            txtRecipeName.ForeColor = Color.SteelBlue;
             txtRecipeName.Location = new Point(130, 7);
             txtRecipeName.Multiline = true;
             txtRecipeName.Name = "txtRecipeName";
@@ -107,9 +106,9 @@
             // 
             btnSearch.Anchor = AnchorStyles.Left;
             btnSearch.AutoSize = true;
-            btnSearch.BackColor = Color.MistyRose;
+            btnSearch.BackColor = Color.SteelBlue;
             btnSearch.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSearch.ForeColor = Color.DarkRed;
+            btnSearch.ForeColor = Color.Black;
             btnSearch.Location = new Point(261, 3);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(141, 38);
@@ -121,9 +120,9 @@
             // 
             btnNew.Anchor = AnchorStyles.Left;
             btnNew.AutoSize = true;
-            btnNew.BackColor = Color.MistyRose;
+            btnNew.BackColor = Color.SteelBlue;
             btnNew.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnNew.ForeColor = Color.DarkRed;
+            btnNew.ForeColor = Color.Black;
             btnNew.Location = new Point(408, 3);
             btnNew.Name = "btnNew";
             btnNew.Size = new Size(137, 38);
@@ -133,7 +132,8 @@
             // 
             // gRecipe
             // 
-            gRecipe.BackgroundColor = Color.LightPink;
+            gRecipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gRecipe.BackgroundColor = Color.AliceBlue;
             gRecipe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gRecipe.Dock = DockStyle.Fill;
             gRecipe.Location = new Point(3, 53);
@@ -141,7 +141,6 @@
             gRecipe.RowHeadersWidth = 51;
             gRecipe.Size = new Size(794, 394);
             gRecipe.TabIndex = 2;
-            gRecipe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // 
             // frmSearch
             // 
@@ -157,7 +156,6 @@
             tblOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gRecipe).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
