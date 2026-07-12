@@ -1,5 +1,8 @@
+using CPUFramework;
 using RecipeSystem;
 using RecipeWinForm;
+using System.Configuration;
+using System.Data;
 namespace RecipeWinForms
 {
     internal static class Program
@@ -13,9 +16,18 @@ namespace RecipeWinForms
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            DBManager.SetConnectionString("Server = tcp:chanim.database.windows.net,1433; Initial Catalog = RecipeDB; Persist Security Info = False; User ID = ChaniM; Password = Azure2026!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
-            
-            Application.Run(new frmDashboard());
+            string cs = ConfigurationManager.ConnectionStrings["devconn"].ConnectionString;
+            DBManager.SetConnectionString(cs, false);
+
+            frmDashboard f = new frmDashboard();
+#if DEBUG
+            f.Text = f.Text + " -Dev";
+#endif
+            Application.Run(f);
         }
     }
 }
+
+//DBManager.SetConnectionString("-Server = tcp:chanim.database.windows.net,1433; Initial Catalog = RecipeDB; Persist Security Info = False; User ID = ChaniM; Password = Azure2026!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
+//DBManager.SetConnectionString("Server=.\\SQLExpress;Database=RecipeDB;User Id = appadmin; Password = HAPpy372($%;TrustServerCertificate=True;");
+

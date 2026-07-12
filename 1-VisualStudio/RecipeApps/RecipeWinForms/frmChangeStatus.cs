@@ -19,10 +19,28 @@ namespace RecipeWinForm
             txtDrafted.TextChanged += TxtDrafted_TextChanged;
             txtPublished.TextChanged += TxtPublished_TextChanged;
 
+            txtDrafted.KeyPress += TxtDrafted_KeyPress;
+            txtPublished.KeyPress += TxtPublished_KeyPress;
+            txtArchived.KeyPress += TxtArchived_KeyPress;
+
             btnDraft.Click += BtnDraft_Click;
             btnArchive.Click += BtnArchive_Click;
             btnPublish.Click += BtnPublish_Click;
         }
+        private void AllowOnlyDateCharachters(KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+            if(char.IsDigit(e.KeyChar) || e.KeyChar == '/' || e.KeyChar == '-')
+            {
+                return;
+            }
+            MessageBox.Show("Only numbers are allowed in date fields. Please enter a valid date. Use mm/d/yyyy or mm-dd-yyyy.", Application.ProductName);
+            e.Handled = true;
+        }
+
         private void SetRecipeInfo()
         {
             if(dtrecipe.Rows.Count == 0)
@@ -37,18 +55,29 @@ namespace RecipeWinForm
         }
         private DateTime GetStatusDate(string status)
         {
+            TextBox txt;
+            string statusname;
+
             if (status == "draft")
             {
-                return DateTime.Parse(txtDrafted.Text);
+                txt = txtDrafted;
+                statusname = "drafted";
             }
             else if (status == "publish")
             {
-                return DateTime.Parse(txtPublished.Text);
+                txt = txtPublished;
+                statusname = "published";
             }
             else
             {
-                return DateTime.Parse(txtArchived.Text);
+                txt = txtArchived;
+                statusname = "archived";                
             }
+            if(DateTime.TryParse(txt.Text, out DateTime statusdate) == false)
+            {
+                throw new Exception("Please enter a valid " + statusname + " date. Use mm/d/yyyy or mm-dd-yyyy.");
+            }
+            return statusdate;
         }
         public void ShowForm(int recipeidval)
         {
@@ -171,5 +200,20 @@ namespace RecipeWinForm
         {
             ChangeStatus("draft");
         }
+        private void TxtArchived_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            AllowOnlyDateCharachters(e);
+        }
+
+        private void TxtPublished_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            AllowOnlyDateCharachters(e);
+        }
+
+        private void TxtDrafted_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            AllowOnlyDateCharachters(e);
+        }
+
     }
 }

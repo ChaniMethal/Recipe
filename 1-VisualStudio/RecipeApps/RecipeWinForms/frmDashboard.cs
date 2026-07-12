@@ -21,13 +21,28 @@ namespace RecipeWinForm
             btnRecipeList.Click += BtnRecipeList_Click;
             btnCookbookList.Click += BtnCookbookList_Click;
             btnMealList.Click += BtnMealList_Click;
-            this.Activated += FrmDashboard_Activated;
+            //this.Activated += FrmDashboard_Activated;
+            this.Shown += FrmDashboard_Shown;
         }
 
-        private void FrmDashboard_Activated(object? sender, EventArgs e)
+        private void FrmDashboard_Shown(object? sender, EventArgs e)
         {
+            frmLogin f = new() { StartPosition = FormStartPosition.CenterParent };
+            bool b = f.ShowLogin();
+            if(b == false)
+            {
+                this.Close();
+                Application.Exit();
+                return;
+            }
+            OpenForm(typeof(frmDashboard));
             BindData();
         }
+
+        //private void FrmDashboard_Activated(object? sender, EventArgs e)
+        //{
+        //    BindData();
+        //}
         private void SetText(DataTable dt, string recordtype, TextBox txt)
         {
             var rows = dt.Select($"DashboardType = '{recordtype}'");
