@@ -16,6 +16,8 @@ namespace RecipeWinForm
         public frmDataMaintenance()
         {
             InitializeComponent();
+            rdoUsers.Checked = true;
+            LoadGrid("Users");
             rdoUsers.CheckedChanged += RdoUsers_CheckedChanged;
             rdoIngredients.CheckedChanged += RdoIngredients_CheckedChanged;
             rdoCuisines.CheckedChanged += RdoCuisines_CheckedChanged;
@@ -89,6 +91,9 @@ namespace RecipeWinForm
 
             WindowsFormsUtility.AddDeleteButtonToGrid(gDataMaintenance, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gDataMaintenance, table);
+
+            gDataMaintenance.ReadOnly = false;
+            gDataMaintenance.AllowUserToAddRows = true;
         }
         private void BtnSaveDataMaintenance_Click(object? sender, EventArgs e)
         {

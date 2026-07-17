@@ -71,5 +71,27 @@ namespace RecipeSystem
             SQLUtility.SetParamValues(cmd, "@CookBookRecipeId", cookbookrecipeid);
             SQLUtility.ExecuteSQL(cmd);
         }
+        public static void AllowOnlyNumbers(KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                return;
+            }
+
+            MessageBox.Show("Only numbers are allowed.", Application.ProductName);
+            e.Handled = true;
+        }
+        public static DataTable GetCookBookList()
+        {
+            SqlCommand cmd = SQLUtility.GetSqlCommand("CookBookGet");
+            SQLUtility.SetParamValues(cmd, "@All", 1);
+
+            return SQLUtility.GetDataTable(cmd);
+        }
     }
 }

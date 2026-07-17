@@ -27,22 +27,27 @@ namespace RecipeWinForm
 
         private void FrmDashboard_Shown(object? sender, EventArgs e)
         {
-            frmLogin f = new() { StartPosition = FormStartPosition.CenterParent };
-            bool b = f.ShowLogin();
-            if(b == false)
+            frmLogin login = new() { StartPosition = FormStartPosition.CenterParent };
+            bool b = login.ShowLogin();
+
+            if (b == false)
             {
                 this.Close();
                 Application.Exit();
                 return;
             }
-            OpenForm(typeof(frmDashboard));
+
+            tblMain.Visible = true;
+            tblMain.BringToFront();
             BindData();
+
+            WindowsFormsUtility.SetUpNav(tsMain);
         }
 
-        //private void FrmDashboard_Activated(object? sender, EventArgs e)
-        //{
-        //    BindData();
-        //}
+        private void FrmDashboard_Activated(object? sender, EventArgs e)
+        {
+          BindData();
+        }
         private void SetText(DataTable dt, string recordtype, TextBox txt)
         {
             var rows = dt.Select($"DashboardType = '{recordtype}'");
@@ -185,8 +190,16 @@ namespace RecipeWinForm
         }
         private void MnuFileDashboard_Click(object? sender, EventArgs e)
         {
+            foreach (Form child in this.MdiChildren)
+            {
+                child.WindowState = FormWindowState.Minimized;
+            }
+
             tblMain.Visible = true;
             tblMain.BringToFront();
+            BindData();
+
+            WindowsFormsUtility.SetUpNav(tsMain);
         }
 
         private void BtnMealList_Click(object? sender, EventArgs e)

@@ -109,7 +109,7 @@
             tblMain.RowStyles.Add(new RowStyle());
             tblMain.RowStyles.Add(new RowStyle());
             tblMain.RowStyles.Add(new RowStyle());
-            tblMain.RowStyles.Add(new RowStyle());
+            tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tblMain.Size = new Size(883, 577);
             tblMain.TabIndex = 1;
             // 
@@ -389,6 +389,8 @@
             // 
             // gIngredients
             // 
+            gIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gIngredients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             gIngredients.BackgroundColor = Color.AliceBlue;
             gIngredients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gIngredients.Dock = DockStyle.Fill;

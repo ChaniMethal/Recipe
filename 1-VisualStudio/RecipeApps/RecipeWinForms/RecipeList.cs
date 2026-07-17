@@ -10,8 +10,10 @@ namespace RecipeWinForm
             LoadList();
             gRecipeList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             btnNewRecipe.Click += BtnNewRecipe_Click;
-            gRecipeList.DoubleClick += GRecipeList_DoubleClick;
+            gRecipeList.CellDoubleClick += GRecipeList_CellDoubleClick;
             gRecipeList.KeyDown += GRecipeList_KeyDown;
+            gRecipeList.AllowUserToAddRows = false;
+            gRecipeList.ReadOnly = true;
         }
 
         private void GRecipeList_KeyDown(object? sender, KeyEventArgs e)
@@ -25,7 +27,8 @@ namespace RecipeWinForm
 
         private void LoadList()
         {
-            gRecipeList.DataSource = DataMaintenance.GetDataList("RecipeList");
+            gRecipeList.DataSource = RecipeClass.GetRecipeList();
+            gRecipeList.Columns["RecipeId"].Visible = false;
         }
         private void OpenRecipe()
         {
@@ -47,9 +50,12 @@ namespace RecipeWinForm
             frmDashboard main = (frmDashboard)this.MdiParent;
             main.OpenForm(typeof(frmRecipe));
         }
-        private void GRecipeList_DoubleClick(object? sender, EventArgs e)
+        private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
-            OpenRecipe();
+            if (e.RowIndex >= 0)
+            {
+                OpenRecipe();
+            }
         }
 
         private void BtnNewRecipe_Click(object? sender, EventArgs e)

@@ -142,7 +142,7 @@
             // 
             lblActive.Anchor = AnchorStyles.Right;
             lblActive.AutoSize = true;
-            lblActive.Location = new Point(129, 217);
+            lblActive.Location = new Point(129, 173);
             lblActive.Name = "lblActive";
             lblActive.Size = new Size(66, 28);
             lblActive.TabIndex = 10;
@@ -202,7 +202,7 @@
             // 
             btnSaveCookbookSupper.AutoSize = true;
             btnSaveCookbookSupper.BackColor = Color.LightSteelBlue;
-            btnSaveCookbookSupper.Location = new Point(3, 300);
+            btnSaveCookbookSupper.Location = new Point(3, 211);
             btnSaveCookbookSupper.Name = "btnSaveCookbookSupper";
             btnSaveCookbookSupper.Size = new Size(94, 38);
             btnSaveCookbookSupper.TabIndex = 11;
@@ -215,25 +215,26 @@
             gCookbookSuppers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblMain.SetColumnSpan(gCookbookSuppers, 3);
             gCookbookSuppers.Dock = DockStyle.Fill;
-            gCookbookSuppers.Location = new Point(3, 344);
+            gCookbookSuppers.Location = new Point(3, 255);
             gCookbookSuppers.Name = "gCookbookSuppers";
             gCookbookSuppers.RowHeadersWidth = 51;
-            gCookbookSuppers.Size = new Size(591, 268);
+            gCookbookSuppers.Size = new Size(591, 357);
             gCookbookSuppers.TabIndex = 12;
             // 
             // tblActiveButtons
             // 
-            tblActiveButtons.ColumnCount = 1;
-            tblActiveButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblActiveButtons.ColumnCount = 2;
+            tblActiveButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tblActiveButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tblActiveButtons.Controls.Add(rdoActiveYes, 0, 0);
-            tblActiveButtons.Controls.Add(rdoActiveNo, 0, 1);
+            tblActiveButtons.Controls.Add(rdoActiveNo, 1, 0);
             tblActiveButtons.Dock = DockStyle.Fill;
             tblActiveButtons.Location = new Point(201, 169);
             tblActiveButtons.Name = "tblActiveButtons";
-            tblActiveButtons.RowCount = 2;
-            tblActiveButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tblActiveButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tblActiveButtons.Size = new Size(220, 125);
+            tblActiveButtons.RowCount = 1;
+            tblActiveButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tblActiveButtons.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tblActiveButtons.Size = new Size(220, 36);
             tblActiveButtons.TabIndex = 14;
             // 
             // rdoActiveYes
@@ -242,7 +243,7 @@
             rdoActiveYes.Dock = DockStyle.Fill;
             rdoActiveYes.Location = new Point(3, 3);
             rdoActiveYes.Name = "rdoActiveYes";
-            rdoActiveYes.Size = new Size(214, 56);
+            rdoActiveYes.Size = new Size(104, 30);
             rdoActiveYes.TabIndex = 0;
             rdoActiveYes.TabStop = true;
             rdoActiveYes.Text = "Yes";
@@ -252,9 +253,9 @@
             // 
             rdoActiveNo.AutoSize = true;
             rdoActiveNo.Dock = DockStyle.Fill;
-            rdoActiveNo.Location = new Point(3, 65);
+            rdoActiveNo.Location = new Point(113, 3);
             rdoActiveNo.Name = "rdoActiveNo";
-            rdoActiveNo.Size = new Size(214, 57);
+            rdoActiveNo.Size = new Size(104, 30);
             rdoActiveNo.TabIndex = 1;
             rdoActiveNo.TabStop = true;
             rdoActiveNo.Text = "No";

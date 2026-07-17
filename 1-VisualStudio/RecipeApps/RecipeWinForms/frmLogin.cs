@@ -19,6 +19,7 @@ namespace RecipeWinForm
             this.Text = this.Text + " -Dev";
 #endif
             txtUser.Text = Settings.Default.user;
+            txtPassword.Text = Settings.Default.password;
             this.ShowDialog();
             return loginsucces;
         }
@@ -40,6 +41,7 @@ namespace RecipeWinForm
                 DBManager.SetConnectionString(connstring, true, txtUser.Text, txtPassword.Text);
                 loginsucces = true;
                 Settings.Default.user = txtUser.Text;
+                Settings.Default.password = txtPassword.Text;
                 Settings.Default.Save();
                 this.Close();
             }

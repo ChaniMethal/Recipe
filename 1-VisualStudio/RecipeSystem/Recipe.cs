@@ -83,6 +83,21 @@ namespace RecipeSystem
 
             SQLUtility.ExecuteSQL(cmd);
         }
+        public static void AllowOnlyNumbers(KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            if (char.IsDigit(e.KeyChar))
+            {
+                return;
+            }
+
+            MessageBox.Show("Only numbers are allowed.", Application.ProductName);
+            e.Handled = true;
+        }
 
     }
 }

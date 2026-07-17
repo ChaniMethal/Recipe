@@ -75,7 +75,7 @@ namespace RecipeSystem
 
             if (dtrecipe.Rows.Count == 0)
             {
-                throw new Exception("Cannot call Recipe save method because there are no rows in the table.");
+                throw new Exception("Cannot save recipe because there are no rows in the table.");
             }
 
             DataRow r = dtrecipe.Rows[0];

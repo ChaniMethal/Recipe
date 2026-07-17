@@ -16,6 +16,8 @@ namespace RecipeWinForm
             LoadList();
             gMealList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             gMealList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gMealList.AllowUserToAddRows = false;
+            gMealList.ReadOnly = true;
         }
 
         private void LoadList()

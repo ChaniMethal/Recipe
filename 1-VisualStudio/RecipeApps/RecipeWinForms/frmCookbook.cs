@@ -23,8 +23,14 @@ namespace RecipeWinForm
             btnSaveCookbook.Click += BtnSaveCookbook_Click;
             btnDeleteCookbook.Click += BtnDeleteCookbook_Click;
             rdoActiveYes.CheckedChanged += RdoActiveYes_CheckedChanged;
+            txtPrice.KeyPress += TxtPrice_KeyPress;
             gCookbookSuppers.DoubleClick += GCookbookSuppers_DoubleClick;
             gCookbookSuppers.CellContentClick += GCookbookSuppers_CellContentClick;
+        }
+
+        private void TxtPrice_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            CookBookClass.AllowOnlyNumbers(e);
         }
 
         private void GCookbookSuppers_CellContentClick(object? sender, DataGridViewCellEventArgs e)
@@ -71,6 +77,7 @@ namespace RecipeWinForm
         public void ShowCookbookForm(int cookbookidval)
         {
             CookBookId = cookbookidval;
+            dtpDateCreated.Enabled = CookBookId == 0;
             this.Tag = cookbookidval;
 
             dtcookbook = CookBookClass.Load(CookBookId);
@@ -102,6 +109,7 @@ namespace RecipeWinForm
 
             gCookbookSuppers.DataSource = CookBookClass.LoadRecipes(CookBookId);
 
+            WindowsFormsUtility.AddComboBoxToGrid(gCookbookSuppers, DataMaintenance.GetDataList("Recipe"), "Recipe", "RecipeName");
             WindowsFormsUtility.AddDeleteButtonToGrid(gCookbookSuppers, deletecolname);
             WindowsFormsUtility.FormatGridForEdit(gCookbookSuppers, "CookBookRecipe");
 

@@ -21,11 +21,15 @@ namespace RecipeWinForm
             gIngredients.CellContentClick += GIngredients_CellContentClick;
             gSteps.CellContentClick += GSteps_CellContentClick;
             gIngredients.ScrollBars = ScrollBars.Both;
+            gIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             gSteps.ScrollBars = ScrollBars.Both;
+            gSteps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             btnSaveIngredient.Click += BtnSaveIngredient_Click;
             btnSaveSteps.Click += BtnSaveSteps_Click;
+            txtCalories.KeyPress += TxtCalories_KeyPress;
             this.FormClosing += FrmRecipe_FormClosing;
         }
+
 
 
         public void ShowForm(int recipeidval)
@@ -309,7 +313,10 @@ namespace RecipeWinForm
                 DeleteRecipeSteps(e.RowIndex);
             }
         }
-
+        private void TxtCalories_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Recipe.AllowOnlyNumbers(e);
+        }
     }
 }
 

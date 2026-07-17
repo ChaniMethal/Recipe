@@ -16,13 +16,16 @@ namespace RecipeWinForm
             LoadList();
             gCookBookList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             btnNewCookbook.Click += BtnNewCookbook_Click;
-            gCookBookList.DoubleClick += GCookBookList_DoubleClick;
+            gCookBookList.CellDoubleClick += GCookBookList_CellDoubleClick;
             gCookBookList.KeyDown += GCookBookList_KeyDown;
             gCookBookList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gCookBookList.AllowUserToAddRows = false;
+            gCookBookList.ReadOnly = true;
         }
         private void LoadList()
         {
-            gCookBookList.DataSource = DataMaintenance.GetDataList("CookBookList");
+            gCookBookList.DataSource = CookBookClass.GetCookBookList();
+            gCookBookList.Columns["CookBookId"].Visible = false;
         }
         private void GetCookBookList()
         {
@@ -56,9 +59,12 @@ namespace RecipeWinForm
                 OpenCookBook();
             }
         }
-        private void GCookBookList_DoubleClick(object? sender, EventArgs e)
+        private void GCookBookList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
-            OpenCookBook();
+            if (e.RowIndex >= 0)
+            {
+                OpenCookBook();
+            }
         }
 
         private void BtnNewCookbook_Click(object? sender, EventArgs e)

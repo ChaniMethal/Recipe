@@ -19,28 +19,14 @@ namespace RecipeWinForm
             txtDrafted.TextChanged += TxtDrafted_TextChanged;
             txtPublished.TextChanged += TxtPublished_TextChanged;
 
-            txtDrafted.KeyPress += TxtDrafted_KeyPress;
-            txtPublished.KeyPress += TxtPublished_KeyPress;
-            txtArchived.KeyPress += TxtArchived_KeyPress;
+            btnDraft.UseVisualStyleBackColor = false;
+            btnPublish.UseVisualStyleBackColor = false;
+            btnArchive.UseVisualStyleBackColor = false;
 
             btnDraft.Click += BtnDraft_Click;
             btnArchive.Click += BtnArchive_Click;
             btnPublish.Click += BtnPublish_Click;
         }
-        private void AllowOnlyDateCharachters(KeyPressEventArgs e)
-        {
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-            if(char.IsDigit(e.KeyChar) || e.KeyChar == '/' || e.KeyChar == '-')
-            {
-                return;
-            }
-            MessageBox.Show("Only numbers are allowed in date fields. Please enter a valid date. Use mm/d/yyyy or mm-dd-yyyy.", Application.ProductName);
-            e.Handled = true;
-        }
-
         private void SetRecipeInfo()
         {
             if(dtrecipe.Rows.Count == 0)
@@ -132,21 +118,24 @@ namespace RecipeWinForm
         }
         private void CurrentStatusDisabledButtons()
         {
-            string status = SQLUtility.GetValueFromFirstRowAsString(dtrecipe, "RecipeStatus").ToLower();
+            string status = SQLUtility
+                   .GetValueFromFirstRowAsString(dtrecipe, "RecipeStatus")
+                   .ToLower();
 
             if (status == "draft")
             {
                 btnDraft.Enabled = false;
+                btnDraft.BackColor = Color.LightSteelBlue;
             }
-
-            if (status == "published")
+            else if (status == "published")
             {
                 btnPublish.Enabled = false;
+                btnPublish.BackColor = Color.LightSteelBlue;
             }
-
-            if (status == "archived")
+            else if (status == "archived")
             {
                 btnArchive.Enabled = false;
+                btnArchive.BackColor = Color.LightSteelBlue;
             }
         }
         private void SetButtonsEnabled()
@@ -159,16 +148,8 @@ namespace RecipeWinForm
         }
         private void EnableButton(TextBox txt, Button btn)
         {
-            if (txt.Text.Trim() == "")
-            {
-                btn.Enabled = false;
-                btn.BackColor = Color.LightSteelBlue;
-            }
-            else
-            {
-                btn.Enabled = true;
-                btn.BackColor = Color.SteelBlue;
-            }
+            btn.Enabled = txt.Text.Trim() != "";
+            btn.BackColor = Color.SteelBlue;
         }
         private void TxtPublished_TextChanged(object? sender, EventArgs e)
         {
@@ -199,20 +180,6 @@ namespace RecipeWinForm
         private void BtnDraft_Click(object? sender, EventArgs e)
         {
             ChangeStatus("draft");
-        }
-        private void TxtArchived_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            AllowOnlyDateCharachters(e);
-        }
-
-        private void TxtPublished_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            AllowOnlyDateCharachters(e);
-        }
-
-        private void TxtDrafted_KeyPress(object? sender, KeyPressEventArgs e)
-        {
-            AllowOnlyDateCharachters(e);
         }
 
     }
