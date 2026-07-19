@@ -40,14 +40,14 @@ namespace RecipeWinForm
 
                 int recipeId = (int)gRecipeList.CurrentRow.Cells["RecipeId"].Value;
 
-                frmDashboard main = (frmDashboard)this.MdiParent;
+                frmMain main = (frmMain)this.MdiParent;
                 main.OpenForm(typeof(frmRecipe), recipeId);
             }
             finally { Application.UseWaitCursor = false; }
         }
         private void GetRecipeList()
         {
-            frmDashboard main = (frmDashboard)this.MdiParent;
+            frmMain main = (frmMain)this.MdiParent;
             main.OpenForm(typeof(frmRecipe));
         }
         private void GRecipeList_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)

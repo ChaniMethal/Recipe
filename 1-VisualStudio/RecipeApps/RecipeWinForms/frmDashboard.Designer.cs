@@ -29,24 +29,6 @@
         private void InitializeComponent()
         {
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            mnuMain = new MenuStrip();
-            mnuFile = new ToolStripMenuItem();
-            mnuFileDashboard = new ToolStripMenuItem();
-            mnuRecipe = new ToolStripMenuItem();
-            mnuRecipeList = new ToolStripMenuItem();
-            mnuNewRecipe = new ToolStripMenuItem();
-            mnuCloneARecipe = new ToolStripMenuItem();
-            mnuMeals = new ToolStripMenuItem();
-            mnuMealList = new ToolStripMenuItem();
-            mnuCookbooks = new ToolStripMenuItem();
-            mnuCookbookList = new ToolStripMenuItem();
-            mnuNewCookbook = new ToolStripMenuItem();
-            mnuCookbookAutoCreate = new ToolStripMenuItem();
-            mnuDataMaintenance = new ToolStripMenuItem();
-            mnuEditData = new ToolStripMenuItem();
-            mnuWindows = new ToolStripMenuItem();
-            mnuWindowTile = new ToolStripMenuItem();
-            mnuWindowCascade = new ToolStripMenuItem();
             tblMain = new TableLayoutPanel();
             lblHeader = new Label();
             lblSubHeader = new Label();
@@ -62,8 +44,6 @@
             btnRecipeList = new Button();
             btnMealList = new Button();
             btnCookbookList = new Button();
-            tsMain = new ToolStrip();
-            mnuMain.SuspendLayout();
             tblMain.SuspendLayout();
             tblButtons.SuspendLayout();
             SuspendLayout();
@@ -72,132 +52,6 @@
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
-            // 
-            // mnuMain
-            // 
-            mnuMain.BackColor = SystemColors.ActiveCaption;
-            mnuMain.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            mnuMain.ImageScalingSize = new Size(20, 20);
-            mnuMain.Items.AddRange(new ToolStripItem[] { mnuFile, mnuRecipe, mnuMeals, mnuCookbooks, mnuDataMaintenance, mnuWindows });
-            mnuMain.Location = new Point(0, 0);
-            mnuMain.Name = "mnuMain";
-            mnuMain.Size = new Size(1119, 36);
-            mnuMain.TabIndex = 0;
-            mnuMain.Text = "menuStrip1";
-            // 
-            // mnuFile
-            // 
-            mnuFile.DropDownItems.AddRange(new ToolStripItem[] { mnuFileDashboard });
-            mnuFile.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mnuFile.Name = "mnuFile";
-            mnuFile.Size = new Size(59, 32);
-            mnuFile.Text = "File";
-            // 
-            // mnuFileDashboard
-            // 
-            mnuFileDashboard.Name = "mnuFileDashboard";
-            mnuFileDashboard.Size = new Size(200, 32);
-            mnuFileDashboard.Text = "Dashboard";
-            // 
-            // mnuRecipe
-            // 
-            mnuRecipe.DropDownItems.AddRange(new ToolStripItem[] { mnuRecipeList, mnuNewRecipe, mnuCloneARecipe });
-            mnuRecipe.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mnuRecipe.Name = "mnuRecipe";
-            mnuRecipe.Size = new Size(98, 32);
-            mnuRecipe.Text = "Recipes";
-            // 
-            // mnuRecipeList
-            // 
-            mnuRecipeList.Name = "mnuRecipeList";
-            mnuRecipeList.Size = new Size(237, 32);
-            mnuRecipeList.Text = "List";
-            // 
-            // mnuNewRecipe
-            // 
-            mnuNewRecipe.Name = "mnuNewRecipe";
-            mnuNewRecipe.Size = new Size(237, 32);
-            mnuNewRecipe.Text = "New Recipe";
-            // 
-            // mnuCloneARecipe
-            // 
-            mnuCloneARecipe.Name = "mnuCloneARecipe";
-            mnuCloneARecipe.Size = new Size(237, 32);
-            mnuCloneARecipe.Text = "Clone a Recipe";
-            // 
-            // mnuMeals
-            // 
-            mnuMeals.DropDownItems.AddRange(new ToolStripItem[] { mnuMealList });
-            mnuMeals.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mnuMeals.Name = "mnuMeals";
-            mnuMeals.Size = new Size(82, 32);
-            mnuMeals.Text = "Meals";
-            // 
-            // mnuMealList
-            // 
-            mnuMealList.Name = "mnuMealList";
-            mnuMealList.Size = new Size(131, 32);
-            mnuMealList.Text = "List";
-            // 
-            // mnuCookbooks
-            // 
-            mnuCookbooks.DropDownItems.AddRange(new ToolStripItem[] { mnuCookbookList, mnuNewCookbook, mnuCookbookAutoCreate });
-            mnuCookbooks.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mnuCookbooks.Name = "mnuCookbooks";
-            mnuCookbooks.Size = new Size(129, 32);
-            mnuCookbooks.Text = "Cookbooks";
-            // 
-            // mnuCookbookList
-            // 
-            mnuCookbookList.Name = "mnuCookbookList";
-            mnuCookbookList.Size = new Size(241, 32);
-            mnuCookbookList.Text = "List";
-            // 
-            // mnuNewCookbook
-            // 
-            mnuNewCookbook.Name = "mnuNewCookbook";
-            mnuNewCookbook.Size = new Size(241, 32);
-            mnuNewCookbook.Text = "New Cookbook";
-            // 
-            // mnuCookbookAutoCreate
-            // 
-            mnuCookbookAutoCreate.Name = "mnuCookbookAutoCreate";
-            mnuCookbookAutoCreate.Size = new Size(241, 32);
-            mnuCookbookAutoCreate.Text = "Auto-Create";
-            // 
-            // mnuDataMaintenance
-            // 
-            mnuDataMaintenance.DropDownItems.AddRange(new ToolStripItem[] { mnuEditData });
-            mnuDataMaintenance.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mnuDataMaintenance.Name = "mnuDataMaintenance";
-            mnuDataMaintenance.Size = new Size(200, 32);
-            mnuDataMaintenance.Text = "Data Maintenance";
-            // 
-            // mnuEditData
-            // 
-            mnuEditData.Name = "mnuEditData";
-            mnuEditData.Size = new Size(186, 32);
-            mnuEditData.Text = "Edit Data";
-            // 
-            // mnuWindows
-            // 
-            mnuWindows.DropDownItems.AddRange(new ToolStripItem[] { mnuWindowTile, mnuWindowCascade });
-            mnuWindows.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            mnuWindows.Name = "mnuWindows";
-            mnuWindows.Size = new Size(113, 32);
-            mnuWindows.Text = "Windows";
-            // 
-            // mnuWindowTile
-            // 
-            mnuWindowTile.Name = "mnuWindowTile";
-            mnuWindowTile.Size = new Size(174, 32);
-            mnuWindowTile.Text = "Tile";
-            // 
-            // mnuWindowCascade
-            // 
-            mnuWindowCascade.Name = "mnuWindowCascade";
-            mnuWindowCascade.Size = new Size(174, 32);
-            mnuWindowCascade.Text = "Cascade";
             // 
             // tblMain
             // 
@@ -216,8 +70,8 @@
             tblMain.Controls.Add(txtMeals, 1, 4);
             tblMain.Controls.Add(txtCookBook, 1, 5);
             tblMain.Controls.Add(tblButtons, 0, 6);
-            tblMain.Dock = DockStyle.Bottom;
-            tblMain.Location = new Point(0, 55);
+            tblMain.Dock = DockStyle.Fill;
+            tblMain.Location = new Point(0, 0);
             tblMain.Name = "tblMain";
             tblMain.RowCount = 7;
             tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
@@ -229,7 +83,7 @@
             tblMain.RowStyles.Add(new RowStyle(SizeType.Percent, 14.2857141F));
             tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tblMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tblMain.Size = new Size(1119, 572);
+            tblMain.Size = new Size(1119, 627);
             tblMain.TabIndex = 1;
             // 
             // lblHeader
@@ -242,7 +96,7 @@
             lblHeader.ForeColor = Color.DarkBlue;
             lblHeader.Location = new Point(3, 0);
             lblHeader.Name = "lblHeader";
-            lblHeader.Size = new Size(1113, 81);
+            lblHeader.Size = new Size(1113, 89);
             lblHeader.TabIndex = 0;
             lblHeader.Text = "Hearty Hearth Desktop App";
             lblHeader.TextAlign = ContentAlignment.MiddleCenter;
@@ -254,9 +108,9 @@
             lblSubHeader.Dock = DockStyle.Fill;
             lblSubHeader.FlatStyle = FlatStyle.Flat;
             lblSubHeader.ForeColor = Color.DarkBlue;
-            lblSubHeader.Location = new Point(3, 81);
+            lblSubHeader.Location = new Point(3, 89);
             lblSubHeader.Name = "lblSubHeader";
-            lblSubHeader.Size = new Size(1113, 81);
+            lblSubHeader.Size = new Size(1113, 89);
             lblSubHeader.TabIndex = 1;
             lblSubHeader.Text = "Welcome to Hearty Hearth desktop app. In this app you can create recipes and cookbooks. You can also view lists of our current recipes, meals, and cookbooks. Happy cooking!";
             lblSubHeader.TextAlign = ContentAlignment.MiddleCenter;
@@ -267,9 +121,9 @@
             lblType.BackColor = Color.LightSteelBlue;
             lblType.Dock = DockStyle.Fill;
             lblType.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblType.Location = new Point(3, 162);
+            lblType.Location = new Point(3, 178);
             lblType.Name = "lblType";
-            lblType.Size = new Size(553, 81);
+            lblType.Size = new Size(553, 89);
             lblType.TabIndex = 2;
             lblType.Text = "Type";
             lblType.TextAlign = ContentAlignment.MiddleCenter;
@@ -280,9 +134,9 @@
             lblNumber.BackColor = Color.LightSteelBlue;
             lblNumber.Dock = DockStyle.Fill;
             lblNumber.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNumber.Location = new Point(562, 162);
+            lblNumber.Location = new Point(562, 178);
             lblNumber.Name = "lblNumber";
-            lblNumber.Size = new Size(554, 81);
+            lblNumber.Size = new Size(554, 89);
             lblNumber.TabIndex = 3;
             lblNumber.Text = "Number";
             lblNumber.TextAlign = ContentAlignment.MiddleCenter;
@@ -291,9 +145,9 @@
             // 
             lblRecipes.AutoSize = true;
             lblRecipes.Dock = DockStyle.Fill;
-            lblRecipes.Location = new Point(3, 243);
+            lblRecipes.Location = new Point(3, 267);
             lblRecipes.Name = "lblRecipes";
-            lblRecipes.Size = new Size(553, 81);
+            lblRecipes.Size = new Size(553, 89);
             lblRecipes.TabIndex = 4;
             lblRecipes.Text = "Recipes";
             lblRecipes.TextAlign = ContentAlignment.MiddleCenter;
@@ -302,9 +156,9 @@
             // 
             lblMeals.AutoSize = true;
             lblMeals.Dock = DockStyle.Fill;
-            lblMeals.Location = new Point(3, 324);
+            lblMeals.Location = new Point(3, 356);
             lblMeals.Name = "lblMeals";
-            lblMeals.Size = new Size(553, 81);
+            lblMeals.Size = new Size(553, 89);
             lblMeals.TabIndex = 6;
             lblMeals.Text = "Meals";
             lblMeals.TextAlign = ContentAlignment.MiddleCenter;
@@ -313,9 +167,9 @@
             // 
             lblCookbooks.AutoSize = true;
             lblCookbooks.Dock = DockStyle.Fill;
-            lblCookbooks.Location = new Point(3, 405);
+            lblCookbooks.Location = new Point(3, 445);
             lblCookbooks.Name = "lblCookbooks";
-            lblCookbooks.Size = new Size(553, 81);
+            lblCookbooks.Size = new Size(553, 89);
             lblCookbooks.TabIndex = 8;
             lblCookbooks.Text = "Cookbooks";
             lblCookbooks.TextAlign = ContentAlignment.MiddleCenter;
@@ -326,7 +180,7 @@
             txtRecipes.BackColor = Color.AliceBlue;
             txtRecipes.BorderStyle = BorderStyle.None;
             txtRecipes.Enabled = false;
-            txtRecipes.Location = new Point(562, 270);
+            txtRecipes.Location = new Point(562, 298);
             txtRecipes.Name = "txtRecipes";
             txtRecipes.Size = new Size(554, 27);
             txtRecipes.TabIndex = 5;
@@ -338,7 +192,7 @@
             txtMeals.BackColor = Color.AliceBlue;
             txtMeals.BorderStyle = BorderStyle.None;
             txtMeals.Enabled = false;
-            txtMeals.Location = new Point(562, 351);
+            txtMeals.Location = new Point(562, 387);
             txtMeals.Name = "txtMeals";
             txtMeals.Size = new Size(554, 27);
             txtMeals.TabIndex = 7;
@@ -350,7 +204,7 @@
             txtCookBook.BackColor = Color.AliceBlue;
             txtCookBook.BorderStyle = BorderStyle.None;
             txtCookBook.Enabled = false;
-            txtCookBook.Location = new Point(562, 432);
+            txtCookBook.Location = new Point(562, 476);
             txtCookBook.Name = "txtCookBook";
             txtCookBook.Size = new Size(554, 27);
             txtCookBook.TabIndex = 9;
@@ -367,11 +221,11 @@
             tblButtons.Controls.Add(btnMealList, 1, 0);
             tblButtons.Controls.Add(btnCookbookList, 2, 0);
             tblButtons.Dock = DockStyle.Fill;
-            tblButtons.Location = new Point(3, 489);
+            tblButtons.Location = new Point(3, 537);
             tblButtons.Name = "tblButtons";
             tblButtons.RowCount = 1;
             tblButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tblButtons.Size = new Size(1113, 80);
+            tblButtons.Size = new Size(1113, 87);
             tblButtons.TabIndex = 10;
             // 
             // btnRecipeList
@@ -381,7 +235,7 @@
             btnRecipeList.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnRecipeList.Location = new Point(3, 3);
             btnRecipeList.Name = "btnRecipeList";
-            btnRecipeList.Size = new Size(365, 74);
+            btnRecipeList.Size = new Size(365, 81);
             btnRecipeList.TabIndex = 0;
             btnRecipeList.Text = "Recipe List";
             btnRecipeList.UseVisualStyleBackColor = false;
@@ -393,7 +247,7 @@
             btnMealList.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnMealList.Location = new Point(374, 3);
             btnMealList.Name = "btnMealList";
-            btnMealList.Size = new Size(365, 74);
+            btnMealList.Size = new Size(365, 81);
             btnMealList.TabIndex = 1;
             btnMealList.Text = "Meal List";
             btnMealList.UseVisualStyleBackColor = false;
@@ -405,80 +259,44 @@
             btnCookbookList.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnCookbookList.Location = new Point(745, 3);
             btnCookbookList.Name = "btnCookbookList";
-            btnCookbookList.Size = new Size(365, 74);
+            btnCookbookList.Size = new Size(365, 81);
             btnCookbookList.TabIndex = 2;
             btnCookbookList.Text = "Cookbook List";
             btnCookbookList.UseVisualStyleBackColor = false;
-            // 
-            // tsMain
-            // 
-            tsMain.BackColor = Color.AliceBlue;
-            tsMain.ImageScalingSize = new Size(20, 20);
-            tsMain.Location = new Point(0, 36);
-            tsMain.Name = "tsMain";
-            tsMain.Size = new Size(1119, 25);
-            tsMain.TabIndex = 3;
-            tsMain.Text = "toolStrip1";
             // 
             // frmDashboard
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1119, 627);
-            Controls.Add(tsMain);
             Controls.Add(tblMain);
-            Controls.Add(mnuMain);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            IsMdiContainer = true;
-            MainMenuStrip = mnuMain;
             Margin = new Padding(4);
             Name = "frmDashboard";
             Text = "Hearty Hearth - Dashboard";
-            mnuMain.ResumeLayout(false);
-            mnuMain.PerformLayout();
             tblMain.ResumeLayout(false);
             tblMain.PerformLayout();
             tblButtons.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private MenuStrip mnuMain;
-        private ToolStripMenuItem mnuFile;
-        private ToolStripMenuItem mnuFileDashboard;
-        private ToolStripMenuItem mnuRecipe;
-        private ToolStripMenuItem mnuRecipeList;
-        private ToolStripMenuItem mnuNewRecipe;
-        private ToolStripMenuItem mnuCloneARecipe;
-        private ToolStripMenuItem mnuMeals;
-        private ToolStripMenuItem mnuMealList;
-        private ToolStripMenuItem mnuCookbooks;
-        private ToolStripMenuItem mnuCookbookList;
-        private ToolStripMenuItem mnuNewCookbook;
-        private ToolStripMenuItem mnuCookbookAutoCreate;
-        private ToolStripMenuItem mnuDataMaintenance;
-        private ToolStripMenuItem mnuEditData;
-        private ToolStripMenuItem mnuWindows;
         private TableLayoutPanel tblMain;
-        private Label lblHeader;
-        private Label lblSubHeader;
-        private Label lblType;
         private Label lblNumber;
-        private Label lblRecipes;
-        private Label lblMeals;
-        private Label lblCookbooks;
         private TextBox txtRecipes;
         private TextBox txtMeals;
         private TextBox txtCookBook;
+        private Label lblHeader;
+        private Label lblSubHeader;
+        private Label lblType;
+        private Label lblRecipes;
+        private Label lblMeals;
+        private Label lblCookbooks;
         private TableLayoutPanel tblButtons;
         private Button btnRecipeList;
         private Button btnMealList;
         private Button btnCookbookList;
-        private ToolStripMenuItem mnuWindowTile;
-        private ToolStripMenuItem mnuWindowCascade;
-        private ToolStrip tsMain;
     }
 }

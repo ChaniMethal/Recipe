@@ -20,20 +20,32 @@ namespace RecipeWinForm
             lstRecipe.DisplayMember = "RecipeName";
             lstRecipe.ValueMember = "RecipeId";
         }
-        private void BtnClone_Click(object? sender, EventArgs e)
+
+        private void CloneRecipe()
         {
-            if(lstRecipe.SelectedValue == null)
+            if (lstRecipe.SelectedValue == null)
             {
                 return;
             }
 
-            int recipeid = (int)lstRecipe.SelectedValue;
-            int newrecipeid = RecipeClass.Clone(recipeid);
+            try
+            {
+                int recipeid = (int)lstRecipe.SelectedValue;
+                int newrecipeid = RecipeClass.Clone(recipeid);
 
-            frmDashboard main = (frmDashboard)this.MdiParent;
-            main.OpenForm(typeof(frmRecipe), newrecipeid);
+                frmMain main = (frmMain)this.MdiParent;
+                main.OpenForm(typeof(frmRecipe), newrecipeid);
 
-            this.Close();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(SQLUtility.ParseConstraintMessage(ex.Message),"Clone Recipe");
+            }
+        }
+        private void BtnClone_Click(object? sender, EventArgs e)
+        {
+            CloneRecipe();
         }
     }
 }

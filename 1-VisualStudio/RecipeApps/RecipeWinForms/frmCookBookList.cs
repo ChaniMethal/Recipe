@@ -29,7 +29,7 @@ namespace RecipeWinForm
         }
         private void GetCookBookList()
         {
-            frmDashboard main = (frmDashboard)this.MdiParent;
+            frmMain main = (frmMain)this.MdiParent;
             main.OpenForm(typeof(frmCookbook), 0);
         }
 
@@ -43,7 +43,7 @@ namespace RecipeWinForm
 
                 int cookbookid = Convert.ToInt32(gCookBookList.CurrentRow.Cells["CookBookId"].Value);
 
-                frmDashboard main = (frmDashboard)this.MdiParent;
+                frmMain main = (frmMain)this.MdiParent;
                 main.OpenForm(typeof(frmCookbook), cookbookid);
             }
             finally

@@ -22,7 +22,7 @@ namespace RecipeWinForms
             DBManager.SetConnectionString(cs, false);
 
 
-            frmDashboard f = new frmDashboard();
+            frmMain f = new frmMain();
 #if DEBUG
             f.Text = f.Text + " -Dev";
 #endif

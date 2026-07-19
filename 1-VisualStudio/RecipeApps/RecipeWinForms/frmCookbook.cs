@@ -66,7 +66,7 @@ namespace RecipeWinForm
 
             int recipeid = Convert.ToInt32(gCookbookSuppers.CurrentRow.Cells["RecipeId"].Value);
 
-            frmDashboard main = (frmDashboard)this.MdiParent;
+            frmMain main = (frmMain)this.MdiParent;
             main.OpenForm(typeof(frmRecipe), recipeid);
         }
         private void GCookbookSuppers_DoubleClick(object? sender, EventArgs e)

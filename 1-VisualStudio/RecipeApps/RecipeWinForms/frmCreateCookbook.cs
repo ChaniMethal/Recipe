@@ -28,7 +28,7 @@ namespace RecipeWinForm
 
             int newcookbookid = CookBookClass.AutoCreate(userid);
 
-            frmDashboard main = (frmDashboard)this.MdiParent;
+            frmMain main = (frmMain)this.MdiParent;
             main.OpenForm(typeof(frmCookbook), newcookbookid);
 
             this.Close();
