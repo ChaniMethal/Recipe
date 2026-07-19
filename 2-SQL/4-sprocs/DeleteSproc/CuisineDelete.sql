@@ -11,37 +11,25 @@ begin
 begin try 
     begin tran;
     
-    delete MealCourseRecipe
-    where RecipeId in 
-    (
-        select RecipeId
-        from Recipe
-        where CuisineId = @CuisineId
-    )
+    delete mcr
+        from MealCourseRecipe mcr
+        join Recipe r on r.RecipeId = mcr.RecipeId
+        where r.CuisineId = @CuisineId;
 
-    delete CookBookRecipe
-    where RecipeId in 
-    (
-        select RecipeId
-        from Recipe
-        where CuisineId = @CuisineId
-    )
+    delete cbr
+        from CookBookRecipe cbr
+        join Recipe r on r.RecipeId = cbr.RecipeId
+        where r.CuisineId = @CuisineId;
 
-    delete IngredientDesc
-    where RecipeId in 
-    (
-        select RecipeId
-        from Recipe
-        where CuisineId = @CuisineId
-    )
+    delete id
+        from IngredientDesc id
+        join Recipe r on r.RecipeId = id.RecipeId
+        where r.CuisineId = @CuisineId;
 
-    delete PrepSteps
-    where RecipeId in 
-    (
-        select RecipeId
-        from Recipe
-        where CuisineId = @CuisineId
-    )
+    delete ps
+        from PrepSteps ps
+        join Recipe r on r.RecipeId = ps.RecipeId
+        where r.CuisineId = @CuisineId;
 
     delete Recipe 
     where CuisineId = @CuisineId

@@ -11,78 +11,68 @@ begin
     begin try 
         begin tran;
 
-        delete MealCourseRecipe
-        where MealCourseId in 
-        (
-            select mc.MealCourseId
-            from MealCourse mc
-            join Meal m 
-                on m.MealId = mc.MealId
-            where m.UserId = @UserId
-        )
-        or RecipeId in 
-        (
-            select RecipeId
-            from Recipe
-            where UserId = @UserId
-        )
+        delete mcr
+        from MealCourseRecipe mcr
+        join MealCourse mc
+            on mc.MealCourseId = mcr.MealCourseId
+        join Meal m
+            on m.MealId = mc.MealId
+        where m.UserId = @UserId;
 
-        delete MealCourse
-        where MealId in 
-        (
-            select MealId
-            from Meal m 
-            where UserId = @UserId
-        )
+        delete mcr
+        from MealCourseRecipe mcr
+        join Recipe r
+            on r.RecipeId = mcr.RecipeId
+        where r.UserId = @UserId;
 
-        delete CookBookRecipe
-        where CookBookId in 
-        (
-            select CookBookId
-            from CookBook
-            where UserId = @UserId
-        )
-        or RecipeId in 
-        (
-            select RecipeId
-            from Recipe
-            where UserId = @UserId
-        )
+        delete mc
+        from MealCourse mc
+        join Meal m
+            on m.MealId = mc.MealId
+        where m.UserId = @UserId;
 
-        delete IngredientDesc
-        where RecipeId in 
-        (
-            select RecipeId
-            from Recipe
-            where UserId = @UserId
-        )
+        delete cbr
+        from CookBookRecipe cbr
+        join CookBook cb
+            on cb.CookBookId = cbr.CookBookId
+        where cb.UserId = @UserId;
 
-        delete PrepSteps
-        where RecipeId in 
-        (
-            select RecipeId
-            from Recipe
-            where UserId = @UserId
-        )
+        delete cbr
+        from CookBookRecipe cbr
+        join Recipe r
+            on r.RecipeId = cbr.RecipeId
+        where r.UserId = @UserId;
 
-        delete CookBook 
-        where UserId = @UserId
+        delete id
+        from IngredientDesc id
+        join Recipe r
+            on r.RecipeId = id.RecipeId
+        where r.UserId = @UserId;
 
-        delete Meal 
-        where UserId = @UserId
+        delete ps
+        from PrepSteps ps
+        join Recipe r
+            on r.RecipeId = ps.RecipeId
+        where r.UserId = @UserId;
 
-        delete Recipe 
-        where UserId = @UserId
+        delete CookBook
+        where UserId = @UserId;
+
+        delete Meal
+        where UserId = @UserId;
+
+        delete Recipe
+        where UserId = @UserId;
 
         delete Users
-        where UserId = @UserId
+        where UserId = @UserId;
 
-    commit tran
-end try 
-begin catch 
-    ROLLBACK tran;
-    THROW
-end catch 
+        commit tran;
+    end try 
+    begin catch 
+        rollback tran;
+        throw;
+    end catch;
 
     return @return
 end 

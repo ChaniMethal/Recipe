@@ -6,7 +6,9 @@ create or alter procedure dbo.CuisineGet(
 )
 as
 begin
-    select @CuisineName = nullif(@CuisineName, ''), @IncludeBlank = nullif(@IncludeBlank, 0)
+    declare @return int = 0
+
+    select @All =isnull(@All,0), @CuisineId = nullif(@CuisineId, 0), @IncludeBlank = nullif(@IncludeBlank, 0)
 
     select c.CuisineId, c.CuisineName
     from Cuisine c

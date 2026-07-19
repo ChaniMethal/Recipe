@@ -11,13 +11,12 @@ begin
     begin try 
         begin tran;
 
-    delete MealCourseRecipe 
-    where MealCourseId in 
-    (
-        select MealCourseId
-        from MealCourse
-        where CourseId = @CourseId
-    )
+    delete mcr
+    from MealCourseRecipe mcr
+    join MealCourse mc
+    on mc.MealCourseId = mcr.MealCourseId
+    where mc.CourseId = @CourseId;
+
     delete MealCourse
     where CourseId = @CourseId
 

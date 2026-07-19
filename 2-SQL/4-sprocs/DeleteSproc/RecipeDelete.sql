@@ -20,6 +20,12 @@ end
     begin try 
         begin tran;
 
+        delete MealRecipe
+        where RecipeId = @RecipeId;
+
+        delete CookBookRecipe
+        where RecipeId = @RecipeId;
+
         delete IngredientDesc 
         where RecipeId = @RecipeId;
 

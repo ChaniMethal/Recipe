@@ -9,11 +9,11 @@ begin
     from Meal m 
     join Users u 
         on u.UserId = m.UserId
-    join MealCourse mc 
+    left join MealCourse mc 
         on mc.MealId = m.MealId
-    join MealCourseRecipe mcr 
+    left join MealCourseRecipe mcr 
         on mcr.MealCourseId = mc.MealCourseId
-    join Recipe r 
+    left join Recipe r 
         on r.RecipeId = mcr.RecipeId
     where m.MealId = @MealId
     or @All = 1

@@ -1,4 +1,4 @@
-create or alter procedure dbo.UserUpdate(
+create or alter procedure dbo.UsersUpdate(
     @UserId int output,
     @FirstName varchar(50),
     @LastName varchar(50),

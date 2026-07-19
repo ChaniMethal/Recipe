@@ -10,7 +10,7 @@ begin
 
     select @All = isnull (@All,0), @CookBookId = ISNULL(@CookBookId,0), @RecipeId = ISNULL(@RecipeId,0)
 
-    select cbr.CookBookRecipeId,cb.CookBookId, cb.UserId, Recipe = r.RecipeName,Sequence = cbr.[Sequence]
+    select cbr.CookBookRecipeId,cb.CookBookId, cbr.RecipeId, Sequence = cbr.[Sequence]
     from CookBook cb
     join CookBookRecipe cbr
     on cb.CookBookId = cbr. CookBookId
