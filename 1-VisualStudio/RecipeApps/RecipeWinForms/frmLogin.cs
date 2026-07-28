@@ -35,7 +35,7 @@ namespace RecipeWinForm
 #if DEBUG
                 connstringkey = "devconn";
 #else
-                connstringkey = "liveconn";
+             connstringkey = "liveconn";
 #endif
                 string connstring = ConfigurationManager.ConnectionStrings[connstringkey].ConnectionString;
                 DBManager.SetConnectionString(connstring, true, txtUser.Text, txtPassword.Text);

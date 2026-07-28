@@ -42,6 +42,7 @@ namespace RecipeWinForm
                 Application.Exit();
                 return;
             }
+            OpenForm(typeof(frmDashboard));
         }
 
         public void OpenForm(Type frmtype, int pkvalue = 0)
