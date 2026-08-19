@@ -20,7 +20,7 @@ end
     begin try 
         begin tran;
 
-        delete MealRecipe
+        delete MealCourseRecipe
         where RecipeId = @RecipeId;
 
         delete CookBookRecipe
