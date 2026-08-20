@@ -78,7 +78,8 @@ create table dbo.IngredientDesc(
     IngredientSequence int not null constraint ck_IngredientDesc_IngredientSequence_greater_then_zero check(IngredientSequence > 0),
     MeasurementQuantity decimal(6,2) null constraint ck_IngredientDesc_MeasurementQuantity_is_positive check(MeasurementQuantity > 0),
     MeasurementTypeId int null constraint f_IngredientDesc_MeasurementType foreign key references MeasurementType(MeasurementTypeId),
-    constraint u_IngredientId_RecipeId unique (IngredientId, RecipeId)
+    constraint u_IngredientId_RecipeId unique (IngredientId, RecipeId),
+    constraint u_RecipeId_IngredientSequence unique (RecipeId,IngredientSequence)
 )
 go
 create table dbo.PrepSteps(
@@ -88,6 +89,8 @@ create table dbo.PrepSteps(
     StepDesc varchar(500) not null 
         constraint ck_PrepSteps_StepDesc_not_blank check(StepDesc <>'')
         constraint u_RecipeId_StepDesc unique(RecipeId, StepDesc)
+        constraint u_RecipeId_StepSequence unique (RecipeId, StepSequence)
+
 )
 go
 create table dbo.Meal(

@@ -27,10 +27,31 @@ namespace RecipeWinForm
             btnSaveIngredient.Click += BtnSaveIngredient_Click;
             btnSaveSteps.Click += BtnSaveSteps_Click;
             txtCalories.KeyPress += TxtCalories_KeyPress;
+            gIngredients.EditingControlShowing += Grid_EditingControlShowing;
+            gSteps.EditingControlShowing += Grid_EditingControlShowing;
             this.FormClosing += FrmRecipe_FormClosing;
         }
 
+        private void Grid_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
 
+            if (e.Control is TextBox txt)
+            {
+                txt.KeyPress -= Grid_KeyPress;
+
+                if (grid.CurrentCell.ValueType == typeof(int) || grid.CurrentCell.ValueType == typeof(decimal))
+                {
+                    txt.KeyPress += Grid_KeyPress;
+                }
+            }
+        }
+
+    
+        private void Grid_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Recipe.AllowOnlyNumbers(e);
+        }
 
         public void ShowForm(int recipeidval)
         {

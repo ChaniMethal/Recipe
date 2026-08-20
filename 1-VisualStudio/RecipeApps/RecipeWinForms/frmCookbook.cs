@@ -26,8 +26,29 @@ namespace RecipeWinForm
             txtPrice.KeyPress += TxtPrice_KeyPress;
             gCookbookSuppers.DoubleClick += GCookbookSuppers_DoubleClick;
             gCookbookSuppers.CellContentClick += GCookbookSuppers_CellContentClick;
+            gCookbookSuppers.EditingControlShowing += GCookbookSuppers_EditingControlShowing;
         }
 
+        private void GCookbookSuppers_EditingControlShowing(object? sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            DataGridView grid = (DataGridView)sender;
+
+            if (e.Control is TextBox txt)
+            {
+                txt.KeyPress -= Grid_KeyPress;
+
+                if (grid.CurrentCell.ValueType == typeof(int) ||
+                    grid.CurrentCell.ValueType == typeof(decimal))
+                {
+                    txt.KeyPress += Grid_KeyPress;
+                }
+            }
+        }
+
+        private void Grid_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            Recipe.AllowOnlyNumbers(e);
+        }
         private void TxtPrice_KeyPress(object? sender, KeyPressEventArgs e)
         {
             CookBookClass.AllowOnlyNumbers(e);
@@ -77,7 +98,7 @@ namespace RecipeWinForm
         public void ShowCookbookForm(int cookbookidval)
         {
             CookBookId = cookbookidval;
-            dtpDateCreated.Enabled = CookBookId == 0;
+            lblDateCreated.Enabled = CookBookId == 0;
             this.Tag = cookbookidval;
 
             dtcookbook = CookBookClass.Load(CookBookId);
@@ -92,7 +113,7 @@ namespace RecipeWinForm
             WindowsFormsUtility.SetControlBinding(txtCookbookName, bindsource);
             WindowsFormsUtility.SetListBinding(lstUserName, dtusername, dtcookbook, "User");
             WindowsFormsUtility.SetControlBinding(txtPrice, bindsource);
-            WindowsFormsUtility.SetControlBinding(dtpDateCreated, bindsource);
+            WindowsFormsUtility.SetControlBinding(lblDateCreated, bindsource);
             SetActiveButtons();
             LoadCookBookRecipes();
             this.Show();

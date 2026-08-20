@@ -29,15 +29,40 @@ namespace RecipeWinForm
         }
         private void SetRecipeInfo()
         {
-            if(dtrecipe.Rows.Count == 0)
+            if (dtrecipe.Rows.Count == 0)
             {
                 return;
             }
 
             lblHeader.Text = SQLUtility.GetValueFromFirstRowAsString(dtrecipe, "RecipeName");
 
-            string status = SQLUtility.GetValueFromFirstRowAsString(dtrecipe, "RecipeStatus");
+            string status = SQLUtility
+                .GetValueFromFirstRowAsString(dtrecipe, "RecipeStatus")
+                .ToLower();
+
             lblSubHeader.Text = "Current Status: " + status;
+
+            txtDrafted.Text = "";
+            txtPublished.Text = "";
+            txtArchived.Text = "";
+
+            if (dtrecipe.Rows[0]["DateCreated"] != DBNull.Value)
+            {
+                txtDrafted.Text =
+                    Convert.ToDateTime(dtrecipe.Rows[0]["DateCreated"]).ToShortDateString();
+            }
+
+            if (dtrecipe.Rows[0]["DatePublished"] != DBNull.Value)
+            {
+                txtPublished.Text =
+                    Convert.ToDateTime(dtrecipe.Rows[0]["DatePublished"]).ToShortDateString();
+            }
+
+            if (dtrecipe.Rows[0]["DateArchived"] != DBNull.Value)
+            {
+                txtArchived.Text =
+                    Convert.ToDateTime(dtrecipe.Rows[0]["DateArchived"]).ToShortDateString();
+            }
         }
         private DateTime GetStatusDate(string status)
         {

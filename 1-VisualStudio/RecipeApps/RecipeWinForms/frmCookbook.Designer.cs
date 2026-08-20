@@ -39,12 +39,12 @@
             txtCookbookName = new TextBox();
             txtPrice = new TextBox();
             lstUserName = new ComboBox();
-            dtpDateCreated = new DateTimePicker();
             btnSaveCookbookSupper = new Button();
             gCookbookSuppers = new DataGridView();
             tblActiveButtons = new TableLayoutPanel();
             rdoActiveYes = new RadioButton();
             rdoActiveNo = new RadioButton();
+            lblDateCtreaded = new Label();
             tblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gCookbookSuppers).BeginInit();
             tblActiveButtons.SuspendLayout();
@@ -66,10 +66,10 @@
             tblMain.Controls.Add(txtCookbookName, 1, 1);
             tblMain.Controls.Add(txtPrice, 1, 3);
             tblMain.Controls.Add(lstUserName, 1, 2);
-            tblMain.Controls.Add(dtpDateCreated, 2, 4);
             tblMain.Controls.Add(btnSaveCookbookSupper, 0, 5);
             tblMain.Controls.Add(gCookbookSuppers, 0, 6);
             tblMain.Controls.Add(tblActiveButtons, 1, 4);
+            tblMain.Controls.Add(lblDateCtreaded, 2, 4);
             tblMain.Dock = DockStyle.Fill;
             tblMain.Location = new Point(0, 0);
             tblMain.Name = "tblMain";
@@ -188,16 +188,6 @@
             lstUserName.Size = new Size(393, 36);
             lstUserName.TabIndex = 5;
             // 
-            // dtpDateCreated
-            // 
-            dtpDateCreated.CalendarMonthBackground = Color.AliceBlue;
-            dtpDateCreated.Format = DateTimePickerFormat.Short;
-            dtpDateCreated.Location = new Point(427, 169);
-            dtpDateCreated.Name = "dtpDateCreated";
-            dtpDateCreated.Size = new Size(158, 34);
-            dtpDateCreated.TabIndex = 9;
-            dtpDateCreated.Value = new DateTime(2026, 6, 11, 4, 25, 57, 0);
-            // 
             // btnSaveCookbookSupper
             // 
             btnSaveCookbookSupper.AutoSize = true;
@@ -261,6 +251,15 @@
             rdoActiveNo.Text = "No";
             rdoActiveNo.UseVisualStyleBackColor = true;
             // 
+            // lblDateCtreaded
+            // 
+            lblDateCtreaded.AutoSize = true;
+            lblDateCtreaded.Dock = DockStyle.Fill;
+            lblDateCtreaded.Location = new Point(427, 166);
+            lblDateCtreaded.Name = "lblDateCtreaded";
+            lblDateCtreaded.Size = new Size(167, 42);
+            lblDateCtreaded.TabIndex = 15;
+            // 
             // frmCookbook
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
@@ -293,11 +292,11 @@
         private TextBox txtCookbookName;
         private TextBox txtPrice;
         private ComboBox lstUserName;
-        private DateTimePicker dtpDateCreated;
         private Button btnSaveCookbookSupper;
         private DataGridView gCookbookSuppers;
         private TableLayoutPanel tblActiveButtons;
         private RadioButton rdoActiveYes;
         private RadioButton rdoActiveNo;
+        private Label lblDateCtreaded;
     }
 }
