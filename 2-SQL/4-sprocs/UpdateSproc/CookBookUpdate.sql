@@ -11,6 +11,13 @@ as
 begin 
     declare @return int = 0
 
+        if @UserId = 0
+    begin
+        select @return = 1,
+               @Message = 'User cannot be blank.'
+        goto finished
+    end
+
     select @CookBookId = nullif(@CookBookId, 0)
 
     if @CookBookId is null 
